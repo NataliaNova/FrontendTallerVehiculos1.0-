@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+  <div class="container-fluid fs-4">
+    <a
+      class="navbar-brand menu-title fs-4 text-warning mx-5"
+      routerLink="inicio"
+      [routerLinkActive]="'active'"
+    >
+      <i class="bi bi-tools"></i> avncMotors</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active menu-title"
+            routerLink="/servicios"
+            [routerLinkActive]="'active'"
+            ><i class="bi bi-wrench px-2"></i>Servicios</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active menu-title"
+            routerLink="/agenda"
+            [routerLinkActive]="'active'"
+            ><i class="bi bi-calendar2-check px-2"></i> Agenda tu cita</a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-box-seam px-2"></i>Productos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/productoEditar"
+                >Actualizar Producto</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/productoCrear"
+                >Registar Productos</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" routerLink="/productoIndex"
+                >Ver Productos</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active menu-title"
+            routerLink="/contacto"
+            [routerLinkActive]="'active'"
+          >
+            <i class="bi bi-mailbox px-2"></i>Contáctanos</a
+          >
+        </li>
+      </ul>
+
+      <p class="text-warning text-center fs-5 mt-3 mx-5">
+        {{ nombres }} te damos la bienvenida tu taller de confianza
+      </p>
+
+      <a class="text-warning text-decoration-none"
+        ><button
+          class="btn btn-outline-white d-flex text-warning fs-4"
+          type="submit"
+          routerLink="/login"
+        >
+          Login <i class="bi bi-box-arrow-in-left px-2"></i></button
+      ></a>
+      <a class="text-warning me-5 text-decoration-none"
+        ><button
+          class="btn btn-outline-white d-flex text-warning fs-4"
+          type="submit"
+          (click)="cerrarSesion()"
+        >
+          Salir <i class="bi bi-door-open px-2"></i></button
+      ></a>
+    </div>
+  </div>
+</nav>
