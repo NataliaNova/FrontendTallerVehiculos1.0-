@@ -11,6 +11,7 @@ import { VentasComponent } from './componente/ventas/ventas.component';
 import { ContactoComponent } from './componente/contacto/contacto.component';
 import { NoAuthComponent } from './componente/no-auth/no-auth.component';
 import { RegistarClienteComponent } from './componente/registar-cliente/registar-cliente.component';
+import { AgendamientoComponent } from './componente/agendamiento/agendamiento.component';
 
 const routes: Routes = [
   { path: 'barra', component: BarraComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent },
   { path: 'noAutorizado', component: NoAuthComponent },
   { path: 'registrarCliente', component: RegistarClienteComponent },
+  { path: 'agendamiento', component: AgendamientoComponent },
 ];
 
 @NgModule({

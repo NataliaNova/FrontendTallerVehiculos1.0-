@@ -33,6 +33,6 @@ export class BarraComponent implements OnInit {
     this.nombres = null;
     this.nombres = null;
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/inicio']);
   }
 }
