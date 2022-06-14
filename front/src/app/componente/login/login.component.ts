@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ClienteService } from 'src/app/Servicios/cliente-servicio';
+import { User } from 'src/app/Models/usuario-model';
+import { UsuarioService } from 'src/app/Servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,7 @@ export class LoginComponent implements OnInit {
   public token: any;
   public identity: any;
   public nombre: any;
+  public rol: any;
 
   public mensajeOk: any;
   public mensajeError: any;
@@ -21,7 +24,7 @@ export class LoginComponent implements OnInit {
   formValue!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private clienteService: ClienteService,
+    private usuarioService: UsuarioService,
     private router: Router
   ) {}
 
@@ -38,33 +41,38 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.formValue.value.email == '') {
+      // this.mensajeError('Debe diligenciar su correo');
       alert('Debe diligenciar su correo');
     } else if (this.formValue.value.contrasena == '') {
       alert('Debe diligenciar su contraseña');
-      //this.mensaje_error = 'Debe diligenciar su correo';
+      //this.mensajeError = 'Debe diligenciar su correo';
     } else {
-      this.clienteService.login(this.formValue.value).subscribe(
+      this.usuarioService.login(this.formValue.value).subscribe(
         (response) => {
           console.log(response);
 
-          if (response.mensaje == 'Correo Incorrecto') {
+          if (response.mensaje == 'El correo electrónico no es correcto') {
+            // this.mensajeError('El correo no existe');
             alert('El correo no existe');
-          } else if (response.mensaje == 'Contraseña Incorrecta') {
+          } else if (response.mensaje == 'La contraseña no es correcta') {
+            // this.mensajeError('La contraseña es incorrecta');
             alert('La contraseña es incorrecta');
           } else {
-            alert('Inicio de sessión exitoso!');
+            Swal.fire('Inicio de sessión exitoso!');
 
             // Variables de BD
             this.token = response.token;
             this.nombre = response.nombres;
             this.identity = response.id;
+            this.rol = response.rol;
 
             // Local Storage
             localStorage.setItem('token', this.token);
             localStorage.setItem('nombres', this.nombre);
             localStorage.setItem('id', this.identity);
+            localStorage.setItem('rol', this.rol);
 
-            this.clienteService.login(this.formValue.value).subscribe(
+            this.usuarioService.login(this.formValue.value).subscribe(
               (response) => {
                 console.log(response);
 
@@ -83,5 +91,8 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }
+  cerrarAlerta() {
+    this.mensajeError = '';
   }
 }

@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'primeng/carousel';
 import { RegistarClienteComponent } from './componente/registar-cliente/registar-cliente.component';
 import { AgendamientoComponent } from './componente/agendamiento/agendamiento.component';
+import { ProductoInicioComponent } from './componente/productos/producto-inicio/producto-inicio.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AgendamientoComponent } from './componente/agendamiento/agendamiento.co
     UsuarioComponent,
     RegistarClienteComponent,
     AgendamientoComponent,
+    ProductoInicioComponent,
   ],
   imports: [
     BrowserModule,

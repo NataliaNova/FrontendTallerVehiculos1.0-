@@ -1,5 +1,5 @@
 <!-- Section: Design Block -->
-
+<!-- <app-barra></app-barra> -->
 <section class="vh-100" style="background-color: #191919">
   <style>
     .cascading-right {
@@ -27,6 +27,21 @@
           <div class="card-body p-5 shadow-5 text-center">
             <h2 class="fw-bold mb-5">Ingresa aquí</h2>
             <form [formGroup]="formValue">
+              <!--  <div
+               *ngIf="mensajeError"
+                class="alert alert-danger alert-dismissible fade show"
+                role="alert"
+              >
+                <h5>{{ mensajeError }}</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                  (click)="cerrarAlerta()"
+                ></button>
+              </div> -->
+
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <input
