@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductoService } from 'src/app/Servicios/producto-servicio';
-import { ProductosModel } from 'src/app/Models/productos-model';
+import { Producto, ProductosModel } from 'src/app/Models/productos-model';
 import { UsuarioService } from 'src/app/Servicios/usuario.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
@@ -19,7 +19,8 @@ export class ProductoCrearComponent implements OnInit {
   //Var.Aux
   formValue!: FormGroup;
 
-  productoModel: ProductosModel = new ProductosModel();
+  // productoModel: ProductosModel = new ProductosModel();
+  public productoModel: any;
 
   error_message!: any;
   success_message!: any;
@@ -42,9 +43,12 @@ export class ProductoCrearComponent implements OnInit {
   ) {
     this.rol = this.usuarioService.obtenerRol();
     this.token = this.usuarioService.obtenerToken();
+    this.productoModel = new Producto('', '', '', '', '', 0, 0, 0);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //this.validar();
+  }
 
   validar() {
     if (this.rol != 'Admin') {
@@ -59,7 +63,7 @@ export class ProductoCrearComponent implements OnInit {
     this.formValue = this.formBuilder.group({
       nombre: [''],
       marca: [''],
-      descripción: [''],
+      descripcion: [''],
       precio_compra: [''],
       precio_venta: [''],
       cantidad: [''],
@@ -75,7 +79,7 @@ export class ProductoCrearComponent implements OnInit {
     this.productoModel.precio_compra = this.formValue.value.precio_compra;
     this.productoModel.precio_venta = this.formValue.value.precio_venta;
     this.productoModel.cantidad = this.formValue.value.cantidad;
-    this.productoModel.imagen = this.file.name;
+    this.productoModel.imagen = '';
     //  this.productoModel.imagen = this.imagenUrl;
 
     if (this.productoModel.nombre == '') {
@@ -95,19 +99,50 @@ export class ProductoCrearComponent implements OnInit {
             this.formValue = this.formBuilder.group({
               nombre: [''],
               marca: [''],
-              descripción: [''],
+              descripcion: [''],
               precio_compra: [''],
               precio_venta: [''],
               cantidad: [''],
             });
             this.imagenUrl = '';
-            this.imgSelect = '../../../../assets/img/default.jpg';
+            this.imgSelect = '../../../../assets/img/Screenshot_1.png';
           }
         },
         (err) => {
           console.log(err);
         }
       );
+    }
+  }
+
+  onSubmit(productoForm: any) {
+    if (productoForm.valid) {
+      if (this.file != this.imgSelect) {
+        this.productoService
+          .insert_producto({
+            nombre: productoForm.value.nombre,
+            marca: productoForm.value.marca,
+            descripcion: productoForm.value.descripcion,
+            imagen: this.file,
+            precio_compra: productoForm.value.precio_compra,
+            precio_venta: productoForm.value.precio_venta,
+            cantidad: productoForm.value.cantidad,
+          })
+          .subscribe(
+            (response) => {
+              this.success_message = 'Se registro el producto correctamente';
+              this.productoModel = new Producto('', '', '', '', '', 0, 0, 0);
+              this.imgSelect = '../../../../assets/img/Screenshot_1.png';
+              this.imagenUrl = '';
+              this.file = this.imgSelect;
+            },
+            (error) => {}
+          );
+      } else {
+        this.error_message = 'Favor cargue una imagen';
+      }
+    } else {
+      this.error_message = 'Complete correctamente el formulario';
     }
   }
 

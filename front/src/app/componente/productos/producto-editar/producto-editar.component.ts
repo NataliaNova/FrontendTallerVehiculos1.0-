@@ -41,7 +41,7 @@ export class ProductoEditarComponent implements OnInit {
     this.obtenerCampos();
   }
   validar() {
-    if (this.rol != 'ADMIN') {
+    if (this.rol != 'Admin') {
       this.router.navigate(['no-autorizado']);
     }
   }
