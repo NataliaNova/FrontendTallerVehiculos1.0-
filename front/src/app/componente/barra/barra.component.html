@@ -44,12 +44,12 @@
             class="dropdown-menu bg-dark"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <li>
+            <li *ngIf="rol == 'Admin'">
               <a class="dropdown-item text-light" routerLink="/productoEditar">
                 Actualizar Producto</a
               >
             </li>
-            <li>
+            <li *ngIf="rol == 'Admin'">
               <a class="dropdown-item text-light" routerLink="/productoCrear">
                 Registar Productos</a
               >
@@ -74,8 +74,10 @@
           type="submit"
           routerLink="/login"
         >
-          <i class="bi bi-box-arrow-in-right"></i>
-          Login
+          <!-- <form *ngIf="!token"> </form> -->
+            <i class="bi bi-box-arrow-in-right"></i>
+            Login
+
         </button>
 
         <button

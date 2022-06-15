@@ -4,7 +4,6 @@ import { BarraComponent } from './componente/barra/barra.component';
 import { InicioComponent } from './componente/inicio/inicio.component';
 import { ProductoCrearComponent } from './componente/productos/producto-crear/producto-crear.component';
 import { ProductoEditarComponent } from './componente/productos/producto-editar/producto-editar.component';
-import { ProductoIndexComponent } from './componente/productos/producto-index/producto-index.component';
 import { UsuarioComponent } from './componente/usuario/usuario.component';
 import { LoginComponent } from './componente/login/login.component';
 import { VentasComponent } from './componente/ventas/ventas.component';
@@ -19,7 +18,6 @@ const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'productoCrear', component: ProductoCrearComponent },
   { path: 'productoEditar', component: ProductoEditarComponent },
-  { path: 'productoIndex', component: ProductoIndexComponent },
   { path: 'usuario', component: UsuarioComponent },
   { path: 'login', component: LoginComponent },
   { path: 'ventas', component: VentasComponent },

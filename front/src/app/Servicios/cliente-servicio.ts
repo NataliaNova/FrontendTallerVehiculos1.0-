@@ -18,10 +18,10 @@ export class ClienteService {
   public nombres: any;
   public id: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
   crearcliente(data: any) {
-    return this.http.post<any>(base_url + 'cliente/crearCliente', data).pipe(
+    return this._http.post<any>(base_url + 'cliente/crearCliente', data).pipe(
       map((res: any) => {
         return res;
       })
@@ -35,11 +35,17 @@ export class ClienteService {
     }
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(base_url + 'cliente/loginCliente', json, {
+    return this._http.post(base_url + 'cliente/loginCliente', json, {
       headers: headers,
     });
   }
-
+  obtenerCliente() {
+    return this._http.get<any>(base_url + 'cliente/listarclientes').pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
   obtenerToken(): Observable<any> {
     let tokenAux = localStorage.getItem('token');
     if (tokenAux) {

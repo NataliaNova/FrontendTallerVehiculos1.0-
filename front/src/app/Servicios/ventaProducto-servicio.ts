@@ -11,7 +11,7 @@ const base_url = environment.url;
 export class ventaProductoServicio {
   constructor(private _htpp: HttpClient) {}
 
-  obtenerProductosParametro(nombre: any) {
+  /* obtenerProductosParametro(nombre: any) {
     return this._htpp
       .get<any>(base_url + 'producto/listarNombre/' + nombre)
       .pipe(
@@ -40,25 +40,31 @@ export class ventaProductoServicio {
         return res;
       })
     );
-  }
+  } */
 
   registrarVenta(data: any) {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._htpp.post<any>(base_url + 'venta/crearVenta', data).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
+    return this._htpp
+      .post<any>(base_url + 'ventaProducto/crearVentaProducto', data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
   }
 
   save_data(data: any): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._htpp.post(base_url + 'venta/crearVenta', data, {
-      headers: headers,
-    });
+    return this._htpp.post(
+      base_url + 'ventaProducto/crearVentaProducto',
+      data,
+      {
+        headers: headers,
+      }
+    );
   }
 
-  data_venta(id: string): Observable<any> {
+  /* data_venta(id: string): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._htpp.get(base_url + 'venta/listarDetalles/' + id, {
       headers: headers,
@@ -71,5 +77,5 @@ export class ventaProductoServicio {
         return res;
       })
     );
-  }
+  } */
 }

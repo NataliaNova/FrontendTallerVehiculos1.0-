@@ -13,7 +13,7 @@ export class ProductoService {
   constructor(private _htpp: HttpClient) {}
 
   obtenerProductos() {
-    return this._htpp.get<any>(base_url + 'producto/listar').pipe(
+    return this._htpp.get<any>(base_url + 'producto/listarProductos').pipe(
       map((res: any) => {
         return res;
       })

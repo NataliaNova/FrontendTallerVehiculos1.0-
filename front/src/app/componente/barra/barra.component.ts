@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClienteService } from 'src/app/Servicios/cliente-servicio';
+import { UsuarioService } from 'src/app/Servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-barra',
@@ -11,11 +12,13 @@ export class BarraComponent implements OnInit {
   public id: any;
   public token: any;
   public nombres: any;
+  public rol: any;
 
-  constructor(private router: Router, private clienteService: ClienteService) {
-    this.id = clienteService.obtenerIdentidad();
-    this.token = clienteService.obtenerToken();
-    this.nombres = clienteService.obtenernombre();
+  constructor(private router: Router, private usuarioService: UsuarioService) {
+    this.id = usuarioService.obtenerIdentidad();
+    this.token = usuarioService.obtenerToken();
+    this.nombres = usuarioService.obtenerNombre();
+    this.rol = usuarioService.obtenerRol();
   }
 
   ngOnInit(): void {}
@@ -28,11 +31,15 @@ export class BarraComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('nombres');
+    localStorage.removeItem('rol');
 
     this.id = null;
     this.nombres = null;
     this.nombres = null;
+    this.rol = null;
 
-    this.router.navigate(['/inicio']);
+    Swal.fire('Has cerrado sesión correctamente!');
+
+    this.router.navigate(['']);
   }
 }

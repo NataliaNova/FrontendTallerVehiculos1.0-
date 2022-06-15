@@ -8,7 +8,6 @@ import { FooterComponent } from './componente/footer/footer.component';
 import { LoginComponent } from './componente/login/login.component';
 import { ContactoComponent } from './componente/contacto/contacto.component';
 import { NoAuthComponent } from './componente/no-auth/no-auth.component';
-import { ProductoIndexComponent } from './componente/productos/producto-index/producto-index.component';
 import { ProductoCrearComponent } from './componente/productos/producto-crear/producto-crear.component';
 import { ProductoEditarComponent } from './componente/productos/producto-editar/producto-editar.component';
 import { VentasComponent } from './componente/ventas/ventas.component';
@@ -33,7 +32,6 @@ import { ProductoInicioComponent } from './componente/productos/producto-inicio/
     LoginComponent,
     ContactoComponent,
     NoAuthComponent,
-    ProductoIndexComponent,
     ProductoCrearComponent,
     ProductoEditarComponent,
     VentasComponent,

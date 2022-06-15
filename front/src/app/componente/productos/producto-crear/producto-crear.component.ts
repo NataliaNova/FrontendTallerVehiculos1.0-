@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductoService } from 'src/app/Servicios/producto-servicio';
 import { ProductosModel } from 'src/app/Models/productos-model';
-import { User } from 'src/app/Models/usuario-model';
+import { UsuarioService } from 'src/app/Servicios/usuario.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-import { UsuarioService } from 'src/app/Servicios/usuario.service';
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget;
@@ -48,7 +47,7 @@ export class ProductoCrearComponent implements OnInit {
   ngOnInit(): void {}
 
   validar() {
-    if (this.rol != 'ADMIN') {
+    if (this.rol != 'Admin') {
       this.router.navigate(['no-autorizado']);
     } else {
       this.obtenerCampos();
@@ -66,7 +65,7 @@ export class ProductoCrearComponent implements OnInit {
       cantidad: [''],
     });
     this.imagenUrl = '';
-    this.imgSelect = '../../../../assets/img/default.jpg';
+    this.imgSelect = '../../../../assets/img/Screenshot_1.png';
   }
 
   CrearProducto() {
@@ -77,7 +76,7 @@ export class ProductoCrearComponent implements OnInit {
     this.productoModel.precio_venta = this.formValue.value.precio_venta;
     this.productoModel.cantidad = this.formValue.value.cantidad;
     this.productoModel.imagen = this.file.name;
-    // this.productoModel.imagen = this.imageUrl
+    //  this.productoModel.imagen = this.imagenUrl;
 
     if (this.productoModel.nombre == '') {
       this.error_message = 'Debes completar el nombre';

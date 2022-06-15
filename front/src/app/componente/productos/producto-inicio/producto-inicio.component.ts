@@ -16,13 +16,13 @@ export class ProductoInicioComponent implements OnInit {
   //Var.Aux
   public rol: any;
   public token: any;
-  public dataProductos: any;
+  public dataProductos!: any;
   public filtro: any;
   public filtroText: any;
+  public base_url = environment.url;
 
   productoModel: ProductosModel = new ProductosModel();
 
-  public base_url = environment.url;
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
@@ -34,14 +34,7 @@ export class ProductoInicioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.validar();
     this.listar();
-  }
-
-  validar() {
-    if (this.rol != 'ADMIN') {
-      this.router.navigate(['no-autorizado']);
-    }
   }
 
   listar() {
