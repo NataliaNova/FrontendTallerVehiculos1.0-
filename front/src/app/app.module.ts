@@ -23,6 +23,8 @@ import { RegistarClienteComponent } from './componente/registar-cliente/registar
 import { AgendamientoComponent } from './componente/agendamiento/agendamiento.component';
 import { ProductoInicioComponent } from './componente/productos/producto-inicio/producto-inicio.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
