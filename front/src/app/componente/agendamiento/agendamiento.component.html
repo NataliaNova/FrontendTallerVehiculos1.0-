@@ -1,10 +1,153 @@
-<p>agendamiento works!</p>
+<app-barra></app-barra>
 
-<div class="field col-12 md:col-4">
-  <label for="dateformat">DateFormat</label>
-  <p-calendar
-    [(ngModel)]="date2"
-    dateFormat="mm-dd-yy"
-    inputId="dateformat"
-  ></p-calendar>
+<div class="container my-5 bg-transparent pb-5 contenedor-ventana">
+
+  
+
+      <div class="text-center fs-1 text-light my-5 ">
+        Prográmate con nuestros especialistas
+      </div>
+    
+
+      <!-- Calendario -->
+      <!-- <div class="container mt-3">
+        <div class="fs-3 text-light my-2">
+          Día y fecha
+        </div>
+        <div class="p-fluid grid formgrid ">
+          <div class="field col-6 md:col-12">
+            <label class="text-light" for="time">Programa tu día y fecha</label>
+             <p-calendar [(ngModel)]="date7" [showTime]="true" [showSeconds]="false" inputId="time"></p-calendar>
+          </div>
+        </div>
+      </div> -->
+
+
+  <form [formGroup]="formValue">
+
+    <div class="container mt-3">
+      <div class="fs-3 text-light my-2">
+        Día y fecha
+      </div>
+    </div>
+
+    <div class="row pb-5">
+      <div class="col-12 col-md-4">
+          <!-- Fecha -->
+          <div class="form-floating mb-3">
+            <input type="datetime-local" class="form-control" id="floatingInput" placeholder="Tus nombres" style="width: calc(100%);" formControlName="fechaCaptura">
+            <label for="floatingInput text-light">Fecha de visita</label>
+          </div>
+      </div>
+    </div>
+    
+    <div class="fs-3 text-light my-2">
+      Datos Generales
+    </div>
+
+    <div class="row pb-5">
+      <div class="col-12 col-md-6">
+          <!-- Nombres -->
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Tus nombres" style="width: calc(100%);" formControlName = "nombresCaptura">
+            <label for="floatingInput text-light">Nombres</label>
+          </div>
+      </div>
+  
+      <div class="col-12 col-md-6">
+        <!-- Apellidos -->
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Tus apellidos" style="width: calc(100%);" formControlName = "apellidosCaptura">
+          <label for="floatingInput text-light">Apellidos</label>
+        </div>
+      </div>
+  
+      <div class="col-12 col-md-6">
+          <!-- Placa -->
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" style="width: calc(100%);" formControlName = "placaCaptura">
+            <label for="floatingInput text-light">Placa</label>
+          </div>
+      </div>
+      
+      <div class="col-12 col-md-6">
+          <!-- Servicio -->
+          <div class="form-floating  mb-3">
+            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" formControlName = "servicioCaptura">
+              <option selected>Selecciona tu servicio</option>
+              <option *ngFor="let item of servicioCaptura" value="{{item}}">{{item}}</option>
+            </select>
+            <label for="floatingSelect">Servicio</label>
+          </div>
+      </div>
+  
+      <div class="col-12 col-md-6">
+        <!-- Correo -->
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="width: calc(100%);" formControlName = "correoCaptura">
+          <label for="floatingInput text-light">Correo</label>
+        </div>
+    </div>
+  
+      <div class="col-12 col-md-6">
+        <!-- Telefono -->
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" style="width: calc(100%);" formControlName = "telefonoCaptura">
+          <label for="floatingInput text-light">Teléfono</label>
+        </div>
+      </div>
+  
+  
+          <!-- Comentario -->
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Dejanos tus comentarios" id="floatingTextarea2" style="height: 100px" formControlName = "comentarioCaptura"></textarea>
+            <label for="floatingTextarea2">Comentarios</label>
+          </div>
+  
+          <div>
+            <!-- Btn -->
+          <button (click)="crearAgendamiento()" type="submit" class="btn btn-warning my-3" style="width: calc(100%);">Programar Cita</button>
+          </div>
+  
+    </div>
+
+  </form>
+
+</div>
+
+
+
+
+<div class="text-center fs-1 text-light my-5 ">
+  Tus Servicios
+</div>
+
+
+<div class="container my-5 pb-5 contenedor-ventana">
+  <table class="table table-hover border border-warning">
+    <thead>
+      <tr>
+        <th class="bg-warning" scope="col">#</th>
+        <th class="bg-warning" scope="col">Fecha Visita</th>
+        <th class="bg-warning" scope="col">Nombre</th>
+        <th class="bg-warning" scope="col">Apellido</th>
+        <th class="bg-warning" scope="col">Placa</th>
+        <th class="bg-warning" scope="col">Servicio</th>
+        <th class="bg-warning" scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody class="text-light bg-secondary text-center" *ngFor="let item of dataDetalle; let index = index">
+      <tr>
+
+        <td>{{index+1}}</td>
+        <td>{{item.fechaCaptura}}</td>
+        <td>{{item.nombresCaptura}}</td>
+        <td>{{item.apellidosCaptura}}</td>
+        <td>{{item.placaCaptura}}</td>
+        <td>{{item.servicioCaptura}}</td>
+        
+        <td><button type="button" class="btn btn-outline-danger"><i class="bi bi-trash3"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

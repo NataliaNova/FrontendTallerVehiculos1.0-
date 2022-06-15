@@ -23,6 +23,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { RegistarClienteComponent } from './componente/registar-cliente/registar-cliente.component';
 import { AgendamientoComponent } from './componente/agendamiento/agendamiento.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
