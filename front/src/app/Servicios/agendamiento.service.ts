@@ -22,15 +22,21 @@ export class AgendamientoService {
   }
 
   listar(){
-
+    return this.http.get<any>(baseUrl + 'agendamiento/listarAgendamiento')
+    .pipe(map((res:any) => {
+      return res;
+    }))
   }
 
-  actualizar(){
-
+  actualizar(id:any, data:any){
+    return this.http.put<any>(baseUrl + 'agendamiento/actualizarAgendamiento/' + id, data)
+    .pipe(map((res:any) => {
+      return res;
+    }))
   }
 
-  eliminar(){
-
+  eliminar(id:any){
+    return this.http.delete<any>(baseUrl + 'agendamiento/eliminarAgendamiento/' + id)
   }
 
 

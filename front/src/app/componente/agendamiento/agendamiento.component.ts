@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2'
 
 // Formularios
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -41,6 +42,7 @@ export class AgendamientoComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerCamposFormulario();
+    this.listarAgendamientos();
   }
 
 
@@ -71,35 +73,75 @@ export class AgendamientoComponent implements OnInit {
 
 
     if(this.agendamientoModel.fechaSolicitud == ""){
-      this.mensajeError = "El campo de nombre no puede estar vacio";
+      // this.mensajeError = "El campo de fechaSolicitud no puede estar vacio";
+      Swal.fire(
+        'El campo de fechaSolicitud no puede estar vacio',
+        'Por favor llena todos los campos',
+        'error'
+      )
     }
 
     else if(this.agendamientoModel.nombres == ""){
-      this.mensajeError = "El campo de nombre no puede estar vacio";
+      // this.mensajeError = "El campo de nombre no puede estar vacio";
+      Swal.fire(
+        'El campo de nombres no puede estar vacio',
+        'Por favor llena todos los campos',
+        'error'
+      )
     }
 
     else if(this.agendamientoModel.apellidos == ""){
-      this.mensajeError = "El campo de apellidos no puede estar vacio";
+      // this.mensajeError = "El campo de apellidos no puede estar vacio";
+      Swal.fire(
+        'El campo de apellidos no puede estar vacio',
+        'Por favor llena todos los campos',
+        'error'
+      )
     }
 
     else if(this.agendamientoModel.placa == ""){
-      this.mensajeError = "El campo de placa no puede estar vacio";
+      // this.mensajeError = "El campo de placa no puede estar vacio";
+      Swal.fire(
+        'El campo de placa no puede estar vacio',
+        'Por favor llena todos los campos',
+        'error'
+      )
     }
 
     else if(this.agendamientoModel.servicio == ""){
-      this.mensajeError = "El campo de servicios no puede estar vacio";
+      // this.mensajeError = "El campo de servicios no puede estar vacio";
+      Swal.fire(
+        'El campo de servicio no puede estar vacio',
+        'Por favor llena todos los campos',
+        'error'
+      )
     }
 
     else if(this.agendamientoModel.correo == ""){
-      this.mensajeError = "El campo de correo no puede estar vacio";
+      // this.mensajeError = "El campo de correo no puede estar vacio";
+      Swal.fire(
+        'El campo de correo no puede estar vacio',
+        'Por favor llena todos los campos',
+        'error'
+      )
     }
 
     else if(this.agendamientoModel.telefono == ""){
-      this.mensajeError = "El campo de telefono no puede estar vacio";
+      // this.mensajeError = "El campo de telefono no puede estar vacio";
+      Swal.fire(
+        'El campo de comentarios no puede estar vacio',
+        'Por favor llena todos los campos',
+        'error'
+      )
     }
 
     else if(this.agendamientoModel.comentarios == ""){
-      this.mensajeError = "El campo de comentarios no puede estar vacio";
+      // this.mensajeError = "El campo de comentarios no puede estar vacio";
+      Swal.fire(
+        'El campo de comentarios no puede estar vacio',
+        'Por favor llena todos los campos',
+        'error'
+      )
     }
 
     else{
@@ -110,7 +152,22 @@ export class AgendamientoComponent implements OnInit {
             this.mensajeError = res.mensaje;
           }
           else{
-            this.mensajeError = "Agendamiento realizado"
+            Swal.fire(
+              'Agendamiento realizado!',
+              'Te esperamos!',
+              'success'
+            )
+            this.formValue = this.formBuilder.group({
+              fechaCaptura : [''], 
+              nombresCaptura : [''],
+              apellidosCaptura : [''],
+              placaCaptura : [''],
+              servicioCaptura : [''],
+              correoCaptura : [''],
+              telefonoCaptura : [''],
+              comentarioCaptura : [''],
+              
+            })
           }
       },
       err => {
@@ -118,6 +175,59 @@ export class AgendamientoComponent implements OnInit {
       })
     }
 
+  }
+
+  listarAgendamientos(){
+    this.agendamientoService.listar().subscribe(res => {
+      this.dataDetalle = res
+      console.log(this.dataDetalle)
+    })
+  }
+
+  editar(item:any){
+    this.agendamientoModel._id = item._id
+
+    this.formValue.controls['fechaCaptura'].setValue(item.fechaCaptura)
+    this.formValue.controls['nombresCaptura'].setValue(item.nombresCaptura)
+    this.formValue.controls['apellidosCaptura'].setValue(item.apellidosCaptura)
+    this.formValue.controls['placaCaptura'].setValue(item.placaCaptura)
+    this.formValue.controls['servicioCaptura'].setValue(item.servicioCaptura)
+    this.formValue.controls['correoCaptura'].setValue(item.correoCaptura)
+    this.formValue.controls['telefonoCaptura'].setValue(item.telefonoCaptura)
+    this.formValue.controls['comentarioCaptura'].setValue(item.comentarioCaptura)
+    
+  }
+
+  actualizar(){
+    this.agendamientoModel.fechaSolicitud = this.formValue.value.fechaCaptura;
+    this.agendamientoModel.nombres = this.formValue.value.nombresCaptura;
+    this.agendamientoModel.apellidos = this.formValue.value.apellidosCaptura;
+    this.agendamientoModel.placa = this.formValue.value.placaCaptura;
+    this.agendamientoModel.servicio = this.formValue.value.servicioCaptura;
+    this.agendamientoModel.correo = this.formValue.value.correoCaptura;
+    this.agendamientoModel.telefono = this.formValue.value.telefonoCaptura;
+    this.agendamientoModel.comentarios = this.formValue.value.comentarioCaptura;
+
+    this.agendamientoService.actualizar(this.agendamientoModel._id, this.agendamientoModel)
+    .subscribe(res => {
+      Swal.fire(
+        'El agendamiento fue actualizado',
+        'Gracias por preferirnos',
+        'success'
+      )
+    })
+
+  }
+
+  eliminar(item:any){
+    this.agendamientoService.eliminar(item)
+    .subscribe(res => {
+      Swal.fire(
+        'El día agendado fue eliminado exitosamente',
+        'Gracias por preferirnos',
+        'info'
+      )
+    })
   }
 
 }
