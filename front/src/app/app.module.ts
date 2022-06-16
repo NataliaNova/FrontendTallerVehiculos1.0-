@@ -22,6 +22,9 @@ import { CarouselModule } from 'primeng/carousel';
 import { RegistarClienteComponent } from './componente/registar-cliente/registar-cliente.component';
 import { AgendamientoComponent } from './componente/agendamiento/agendamiento.component';
 import { ProductoInicioComponent } from './componente/productos/producto-inicio/producto-inicio.component';
+import { ServicioCrearComponent } from './componente/servicios/servicio-crear/servicio-crear.component';
+import { ServicioInicioComponent } from './componente/servicios/servicio-inicio/servicio-inicio.component';
+import { ServicioEditarComponent } from './componente/servicios/servicio-editar/servicio-editar.component';
 
 
 
@@ -41,6 +44,9 @@ import { ProductoInicioComponent } from './componente/productos/producto-inicio/
     RegistarClienteComponent,
     AgendamientoComponent,
     ProductoInicioComponent,
+    ServicioCrearComponent,
+    ServicioInicioComponent,
+    ServicioEditarComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,9 +2,9 @@
 <section class="vh-100" style="background-color: #191919">
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 my-2" *ngFor="let item of dataProductos">
+            <div class="col-sm-4 my-2" *ngFor="let item of dataServicios">
                 <div class="card bg-dark bg-opacity-25" style="width: 18rem">
-                    <!--  <img [src]="base_url + 'producto/producto/img/' + item.imagen" alt="Avatar" /> -->
+                    <img [src]=" base_url +'servicios/servicios/img/'+ item.imagen" alt="Avatar" />
 
                     <div class="card-body">
                         <h5 class="card-title text-warning">{{ item.nombre }}</h5>
@@ -12,15 +12,14 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item bg-dark bg-opacity-25 text-light">
-                            Frabricado por: {{ item.marca }}
+
+                            Tiempo Estimado :{{ item.tiempoEstimado }} minutos
                         </li>
                         <li class="list-group-item bg-dark bg-opacity-25 text-light">
-                            Por tan solo: {{ item.precio_venta }}
+                            Costo: $ {{ item.precio }}
                         </li>
                     </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">Comprar</a>
-                    </div>
+
                 </div>
             </div>
         </div>

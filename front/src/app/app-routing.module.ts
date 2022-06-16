@@ -12,6 +12,9 @@ import { NoAuthComponent } from './componente/no-auth/no-auth.component';
 import { RegistarClienteComponent } from './componente/registar-cliente/registar-cliente.component';
 import { AgendamientoComponent } from './componente/agendamiento/agendamiento.component';
 import { ProductoInicioComponent } from './componente/productos/producto-inicio/producto-inicio.component';
+import { ServicioInicioComponent } from './componente/servicios/servicio-inicio/servicio-inicio.component';
+import { ServicioCrearComponent } from './componente/servicios/servicio-crear/servicio-crear.component';
+import { ServicioEditarComponent } from './componente/servicios/servicio-editar/servicio-editar.component';
 
 const routes: Routes = [
   { path: 'barra', component: BarraComponent },
@@ -26,8 +29,10 @@ const routes: Routes = [
   { path: 'registrarCliente', component: RegistarClienteComponent },
   { path: 'agendamiento', component: AgendamientoComponent },
   { path: 'productoInicio', component: ProductoInicioComponent },
+  { path: 'servicioInicio', component: ServicioInicioComponent },
+  { path: 'servicioCrear', component: ServicioCrearComponent },
+  { path: 'servicioEditar', component: ServicioEditarComponent }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
